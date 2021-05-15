@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<h1>白云铁塔查询系统</h1>
+<a href={% url 'tieta:stationinfo' %}>铁塔站址级查询</a></br>
+<a href={% url 'tieta:stationcodeinfo' %}>铁塔订单级查询</a>
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,81 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% extends "base.html" %} {% load staticfiles %}
+<!-- 写入 base.html 中定义的 title -->
+{% block title %} 铁塔订单级信息 {% endblock title %}
+<!-- 写入 base.html 中定义的 content -->
+{% block content %} 
+{% if request.user.is_authenticated %}
+<!-- 定义放置文章标题的div容器 -->
+<div class="table table-hover">
+
+<!-- 查询功能 -->
+    <div class="row">
+        <div class="col-auto mr-auto">
+            <form class="form-inline" >
+                <label class="sr-only">content</label>
+                <input type="text" 
+                    class="form-control mb-2 mr-sm-2" 
+                    name="search" 
+                    placeholder="搜索站点..." 
+                    required
+                ><button type="submit">查找</span></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 新增，搜索提示语 -->
+    {% if search %}
+        {% if text%}
+            <h4><span style="color: red">{{ search }}</span>的搜索结果如下：</h4>
+            <hr>        
+        {% else %}
+            <h4>未匹配到与<span style="color: red">{{ search }}</span>相关站址</h4>
+            <hr>
+        {% endif %}
+    {% endif %}
+
+  <table>
+    <thead>
+      <tr>
+        <th>营服中心</th>
+        <th>站名</th>
+        <th>订单号</th>
+        <th>站址编码</th>
+        <th>塔型</th>
+        <th>房型</th>
+        <th>塔共享数</th>
+        <th>房共享数</th>
+        <th>年站址服务费</th>
+      </tr>
+    </thead>
+    <tbody>{% for n in text%}
+      <tr>
+        <td>{{ n.orgSaleId }}</td>
+        <td>
+          <a href="{% url 'tieta:stationdetail' n.id %}">{{ n.stationName }}</a></td>
+        <td>{{ n.requiredConfirmCode}}</td>
+        <td>{{ n.stationCode }}</td>
+        <td>{{ n.towerType }}</td>
+        <td>{{ n.roomType }}</td>
+        <td>{{ n.towerShareNum}}</td>
+        <td>{{ n.roomShareNum }}</td>
+        <td>{{ n.productServiceFee }}</td>
+      </tr>{% endfor %}</tbody>
+  </table>
+</div>
+<!-- 页码导航 -->
+<div class="pagination row">
+  <div class="m-auto">
+    <span class="step-links">
+      <!-- 如果不是第一页，则显示上翻按钮 -->{% if text.has_previous %}
+      <a href="?page=1	" class="btn btn-success">&laquo; 1</a>
+      <span>...</span>
+      <a href="?page={{ text.previous_page_number }}" class="btn btn-secondary">{{ text.previous_page_number }}</a>{% endif %}
+      <!-- 当前页面 -->
+      <span class="current btn btn-danger btn-lg">{{ text.number }}</span>
+      <!-- 如果不是最末页，则显示下翻按钮 -->{% if text.has_next %}
+      <a href="?page={{ text.next_page_number }}" class="btn btn-secondary">{{ text.next_page_number }}</a>
+      <span>...</span>
+      <a href="?page={{ text.paginator.num_pages }}" class="btn btn-success">{{ text.paginator.num_pages }} &raquo;</a>{% endif %}</span></div>
+</div>
+</div>{% else %} 请先登录 {% endif %} {% endblock content %}

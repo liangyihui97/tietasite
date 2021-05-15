@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}404 - 铁塔系统{% endblock %}
+{% block content %}
+    <!-- 网页内容区 -->
+    <div class="container">
+        <!-- Page Heading 面包屑-->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">404
+                    <small>Page Not Found</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'tieta:index' %}">首页</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="jumbotron">
+                    <h1><span class="error-404">404</span>
+                    </h1>
+                    <p>oh,您要访问的页面不存在</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+{% endblock %}

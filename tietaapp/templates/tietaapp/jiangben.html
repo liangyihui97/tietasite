@@ -1,0 +1,38 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    铁塔站址信息
+{% endblock title %}
+
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+
+<!-- 定义放置文章标题的div容器 -->
+<div class="container">
+    <div class="row mt-2">
+
+        {% for n in text%}
+        <!-- 文章内容 -->
+        <div class="col-4 mb-4">
+        <!-- 卡片容器 -->
+            <div class="card h-100">
+                <!-- 中心 -->
+                <h4 class="card-header">{{ n.t_node }}</h4>
+                <!-- 铁塔站名 -->
+                <div class="card-body">
+                    <p class="card-text">{{ n.center|slice:'100' }}营服中心</p>
+                </div>
+                <!-- 注脚 -->
+                <div class="card-footer">
+                    <a href="#" class="btn btn-primary">详细信息</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock content %}

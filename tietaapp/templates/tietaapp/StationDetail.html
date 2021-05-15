@@ -1,0 +1,65 @@
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    站址详细信息
+{% endblock title %}
+
+<!-- 写入 base.html 中定义的 content -->
+{% block content %}
+{% if request.user.is_authenticated %}
+<!-- 文章详情 -->
+<div class="container">
+
+    <div class="row">
+        <!-- 标题及作者 -->
+        <h1 class="col-12 mt-4 mb-4">{{ station_info.stationName }}</h1><a href="#" onclick="javascript:history.back(-1);">返回上一级</a>
+        <div class="col-12 alert alert-success">归属营服：{{ station_info.orgSaleId }}</div>
+        <!-- 文章正文 -->
+        <div class="col-12">
+<p>电信名称：{{ station_info.stationNameDx }}</p>
+<p>站址编码：{{ station_info.stationCode }}</p>
+<p>基站类型：{{ station_info.stationType }}</p>
+<p>详细地址：{{ station_info.stationDetail }}</p>
+<p>电费单价：{{ station_info.powerRate }} 度/元</p>
+<p>场地费：{{ station_info.venueFee }} 元</p>
+<p>备注：{{ station_info.notes }}</p>
+        </div>
+    </div>
+<!-- 显示站址编码下的全部订单 -->
+  <table>
+    <thead>
+      <tr>
+        <th>站名</th>
+        <th>订单号</th>
+        <th>站址编码</th>
+        <th>塔型</th>
+        <th>房型</th>
+        <th>塔共享数</th>
+        <th>房共享数</th>
+        <th>年服务费</th>
+      </tr>
+    </thead>
+<tbody>
+{% for n in station_code_info%}
+<tr>
+<td>{{n.stationName}}</td>
+<td>{{n.requiredConfirmCode}}</td>
+<td>{{n.stationCode}}</td>
+<td>{{n.towerType}}</td>
+<td>{{n.roomType}}</td>
+<td>{{n.towerShareNum}}</td>
+<td>{{ n.roomShareNum }}</td>
+<td>{{ n.productServiceFee }}</td>
+</tr>{% endfor %}
+</tbody>
+  </table>
+
+
+</div>
+ {% else %}
+请先登录
+{% endif %}
+{% endblock content %}
