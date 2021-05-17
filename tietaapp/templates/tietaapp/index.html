@@ -1,10 +1,52 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+<!-- 写入 base.html 中定义的 title -->
+{% block title %} 铁塔查询系统 {% endblock title %}
 {% block content %}
+
 <h1>白云铁塔查询系统</h1>
 <a href={% url 'tieta:stationinfo' %}>铁塔站址级查询</a></br>
-<a href={% url 'tieta:stationcodeinfo' %}>铁塔订单级查询</a>
-</body>
-</html>
+<a href={% url 'tieta:stationcodeinfo' %}>铁塔订单级查询</a></br></br>
+
+平均场地费：{{avg_venuefee.avg_venuefee | floatformat:0}} 元/年</br>
+平均服务费：{{avg_productservicefee | floatformat:0}} 元/年</br>
+年服务费：{{sum_productservicefee.sum_productservicefee | floatformat:0}} 元/年</br>
+白云站址数：{{count_productservicefee.count_productservicefee}} 个</br>
+{%for i in venuefee%}
+{{i.orgSaleId}} :{{i.venuefee}}
+{%endfor%}</br>
+{%for i in productservicefee%}
+{{i.orgSaleId}} :{{i.productservicefee}}
+{%endfor%}
+
+ <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '营服年服务费统计'
+            },
+            tooltip: {},
+            legend: {
+                data:['销量']
+            },
+            xAxis: {
+                data: ["嘉禾","新市","黄石","同德","同和","三元里","太和","人和","江高","钟落潭"]
+            },
+            yAxis: {},
+            series: [{
+                name: '年租金(万元)',
+                type: 'bar',
+                data: [510, 113, 438, 434, 492, 275, 677, 501, 684, 776]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
 {% endblock content %}
+

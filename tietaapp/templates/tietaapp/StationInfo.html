@@ -46,13 +46,13 @@
     </thead>
      <tbody>{% for n in text%}
       <tr>
-        <td>{{ n.orgSaleId }}</td>
-        <td><a href="{% url 'tieta:stationdetail' n.id %}">{{ n.stationName }}</a></td>
-        <td>{{ n.stationCode }}</td>
-        <td>{{ n.powerRate }}</td>
-        <td>{{ n.venueFee }}</td>
-        <td>{{ n.stationDetail }}</td>
-        <td>{{ n.notes }}</td>
+        <td>{{ n.orgSaleId | default:"/"}}</td>
+        <td><a href="{% url 'tieta:stationdetail' n.id %}">{{ n.stationName | default:"/"}}</a></td>
+        <td>{{ n.stationCode | default:"/"}}</td>
+        <td>{{ n.powerRate | default:"/"}}</td>
+        <td>{{ n.venueFee | default:"/"}}</td>
+        <td>{{ n.stationDetail | default:"/"}}</td>
+        <td>{{ n.notes | default:"/"}}</td>
       </tr>{% endfor %}
    </tbody>
   </table>

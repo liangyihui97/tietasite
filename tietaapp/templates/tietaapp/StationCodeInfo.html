@@ -52,14 +52,14 @@
       <tr>
         <td>{{ n.orgSaleId }}</td>
         <td>
-          <a href="{% url 'tieta:stationdetail' n.id %}">{{ n.stationName }}</a></td>
-        <td>{{ n.requiredConfirmCode}}</td>
-        <td>{{ n.stationCode }}</td>
-        <td>{{ n.towerType }}</td>
-        <td>{{ n.roomType }}</td>
-        <td>{{ n.towerShareNum}}</td>
-        <td>{{ n.roomShareNum }}</td>
-        <td>{{ n.productServiceFee }}</td>
+          <a href="{% url 'tieta:stationdetail' n.id %}">{{ n.stationName | default:"/"}}</a></td>
+        <td>{{ n.requiredConfirmCode | default:"/"}}</td>
+        <td>{{ n.stationCode | default:"/"}}</td>
+        <td>{{ n.towerType | default:"/"}}</td>
+        <td>{{ n.roomType | default:"/"}}</td>
+        <td>{{ n.towerShareNum | default:"/"}}</td>
+        <td>{{ n.roomShareNum | default:"/"}}</td>
+        <td>{{ n.productServiceFee | default:"/"}}</td>
       </tr>{% endfor %}</tbody>
   </table>
 </div>

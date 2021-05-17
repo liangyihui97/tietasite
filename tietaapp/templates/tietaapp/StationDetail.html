@@ -16,16 +16,16 @@
     <div class="row">
         <!-- 标题及作者 -->
         <h1 class="col-12 mt-4 mb-4">{{ station_info.stationName }}</h1><a href="#" onclick="javascript:history.back(-1);">返回上一级</a>
-        <div class="col-12 alert alert-success">归属营服：{{ station_info.orgSaleId }}</div>
+        <div class="col-12 alert alert-success">归属营服：{{ station_info.orgSaleId | default:"/"}}</div>
         <!-- 文章正文 -->
         <div class="col-12">
-<p>电信名称：{{ station_info.stationNameDx }}</p>
-<p>站址编码：{{ station_info.stationCode }}</p>
-<p>基站类型：{{ station_info.stationType }}</p>
-<p>详细地址：{{ station_info.stationDetail }}</p>
-<p>电费单价：{{ station_info.powerRate }} 度/元</p>
-<p>场地费：{{ station_info.venueFee }} 元</p>
-<p>备注：{{ station_info.notes }}</p>
+<p>电信名称：{{ station_info.stationNameDx | default:"/" }}</p>
+<p>站址编码：{{ station_info.stationCode | default:"/"  }}</p>
+<p>基站类型：{{ station_info.stationType | default:"/"  }}</p>
+<p>详细地址：{{ station_info.stationDetail | default:"/"  }}</p>
+<p>电费单价：{{ station_info.powerRate | default:"/" }} 度/元</p>
+<p>场地费：{{ station_info.venueFee | default:"/" }} 元</p>
+<p>备注：{{ station_info.notes | default:"/"}}</p>
         </div>
     </div>
 <!-- 显示站址编码下的全部订单 -->

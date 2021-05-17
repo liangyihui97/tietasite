@@ -12,7 +12,7 @@ from django.contrib.auth.hashers import check_password
 
 from .models import StationInfo, StationCodeInfo, User
 # 引入Q对象用于查询功能
-from django.db.models import Q
+from django.db.models import Q, Avg, Max, Min, Sum, Count
 
 # 引入分页模块
 from django.core.paginator import Paginator
@@ -81,7 +81,26 @@ class LogoutView(View):
 # Create your views here.
 # 【规范】这里的template也采用命名空间格式'tietaapp/index.html'
 def index(request):
-    return render(request, 'tietaapp/index.html')
+    # 查询白云平均场地费
+    avg_venuefee = StationInfo.objects.aggregate(avg_venuefee=Avg('venueFee'))
+    # 查询白云平均服务费，数据格式{'sum_productservicefee': Decimal('48981848.31')}
+    sum_productservicefee = StationCodeInfo.objects.aggregate(sum_productservicefee=Sum('productServiceFee'))
+    # 去重计数,(count=Count('id', distinct=True))中的count为自定义字典名称
+    count_productservicefee = StationCodeInfo.objects.aggregate(count_productservicefee=Count('id', distinct=True))
+    # 每个营服的场地费
+    venuefee = StationInfo.objects.values('orgSaleId').annotate(venuefee=Sum('venueFee'))
+    # 每个营服的服务费
+    productservicefee = StationCodeInfo.objects.values('orgSaleId').annotate(productservicefee=Sum('productServiceFee'))
+    avg_productservicefee = sum_productservicefee['sum_productservicefee']/count_productservicefee['count_productservicefee']
+    context = {
+        'avg_venuefee': avg_venuefee,
+        'sum_productservicefee': sum_productservicefee,
+        'count_productservicefee': count_productservicefee,
+        'avg_productservicefee': avg_productservicefee,
+        'venuefee': venuefee,
+        'productservicefee': productservicefee,
+    }
+    return render(request, 'tietaapp/index.html', context)
 
 #def
 # vote(request, question_id):
@@ -109,7 +128,7 @@ def stationinfo(request):
         paginator = Paginator(station_list, len(station_list))
         page = request.GET.get('page')
     stations = paginator.get_page(page)
-    context = {'text': stations, 'search': search}
+    context = {'text': stations, 'search': search,}
     return render(request, 'tietaapp/StationInfo.html', context)
 
     # text = StationInfo.objects.all()
