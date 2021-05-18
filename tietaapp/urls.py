@@ -13,6 +13,7 @@ urlpatterns = [
     path('register/', views.RegView.as_view(), name='register'),
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
+    path('api/echarts/', views.echarts_data, name='apiecharts')
 ]
 
 handler404 = views.view_404

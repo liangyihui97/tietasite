@@ -17,6 +17,9 @@ from django.db.models import Q, Avg, Max, Min, Sum, Count
 # 引入分页模块
 from django.core.paginator import Paginator
 
+# 引入ajax异步获取json
+from django.http import JsonResponse
+
 
 class RegView(View):
     """
@@ -87,18 +90,12 @@ def index(request):
     sum_productservicefee = StationCodeInfo.objects.aggregate(sum_productservicefee=Sum('productServiceFee'))
     # 去重计数,(count=Count('id', distinct=True))中的count为自定义字典名称
     count_productservicefee = StationCodeInfo.objects.aggregate(count_productservicefee=Count('id', distinct=True))
-    # 每个营服的场地费
-    venuefee = StationInfo.objects.values('orgSaleId').annotate(venuefee=Sum('venueFee'))
-    # 每个营服的服务费
-    productservicefee = StationCodeInfo.objects.values('orgSaleId').annotate(productservicefee=Sum('productServiceFee'))
     avg_productservicefee = sum_productservicefee['sum_productservicefee']/count_productservicefee['count_productservicefee']
     context = {
         'avg_venuefee': avg_venuefee,
         'sum_productservicefee': sum_productservicefee,
         'count_productservicefee': count_productservicefee,
         'avg_productservicefee': avg_productservicefee,
-        'venuefee': venuefee,
-        'productservicefee': productservicefee,
     }
     return render(request, 'tietaapp/index.html', context)
 
@@ -165,9 +162,22 @@ def stationdetail(request, id):
     context = {'station_info': station_info, 'station_code_info': station_code_info}
     return render(request, 'tietaapp/StationDetail.html', context)
 
+
 def view_404(request,exception):
     return render(request, 'tietaapp/error404.html', context={'error':'访问有误:页面不存在'}, status=404)
+
 
 def view_500(request):
     return render(request, 'tietaapp/error404.html', context={'error':'访问有误:服务器错误'}, status=500)
 
+
+def echarts_data(request):
+    # 每个营服的场地费
+    venuefee = StationInfo.objects.values('orgSaleId').annotate(venuefee=Sum('venueFee'))
+    # 每个营服的服务费
+    productservicefee = StationCodeInfo.objects.values('orgSaleId').annotate(productservicefee=Sum('productServiceFee')).order_by('productservicefee')
+    jsondata = {
+        'orgsaleid': [i['orgSaleId'] for i in productservicefee],
+        'productservicefee': [i['productservicefee'] for i in productservicefee],
+    }
+    return JsonResponse(jsondata)

@@ -13,40 +13,45 @@
 平均服务费：{{avg_productservicefee | floatformat:0}} 元/年</br>
 年服务费：{{sum_productservicefee.sum_productservicefee | floatformat:0}} 元/年</br>
 白云站址数：{{count_productservicefee.count_productservicefee}} 个</br>
-{%for i in venuefee%}
-{{i.orgSaleId}} :{{i.venuefee}}
-{%endfor%}</br>
-{%for i in productservicefee%}
-{{i.orgSaleId}} :{{i.productservicefee}}
-{%endfor%}
 
- <div id="main" style="width: 600px;height:400px;"></div>
+
+ <div id="main" style="height:400px;"></div>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
+$.ajax({
+      type: "get",
+      url: "{%url 'tieta:apiecharts'%}",
+      success: function (data) {
 
         // 指定图表的配置项和数据
         var option = {
-            title: {
-                text: '营服年服务费统计'
-            },
-            tooltip: {},
-            legend: {
-                data:['销量']
-            },
-            xAxis: {
-                data: ["嘉禾","新市","黄石","同德","同和","三元里","太和","人和","江高","钟落潭"]
-            },
-            yAxis: {},
-            series: [{
-                name: '年租金(万元)',
-                type: 'bar',
-                data: [510, 113, 438, 434, 492, 275, 677, 501, 684, 776]
-            }]
+          title: {
+            left: 'center',
+            text: '营服年服务费统计'
+          },
+          tooltip: {},
+          xAxis: {
+              data: data.orgsaleid
+          },
+          yAxis: {},
+          series: [{
+            name: '年租金(元)',
+            type: 'bar',
+            data: data.productservicefee
+          }]
         };
 
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
+      },
+      error: function () {
+        alert('Error: ajax 请求出错！')
+      }
+    });
+
+
+
     </script>
 {% endblock content %}
 
