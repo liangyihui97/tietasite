@@ -9,16 +9,16 @@
 <div class="table table-hover">
 
 <!-- 查询功能 -->
-    <div class="row">
+    <div class="card">
         <div class="col-auto mr-auto">
             <form class="form-inline" >
                 <label class="sr-only">content</label>
                 <input type="text" 
-                    class="form-control mb-2 mr-sm-2" 
+                    class="form-control" 
                     name="search" 
                     placeholder="搜索站点..." 
                     required
-                ><button type="submit">查找</span></button>
+                ><button type="submit" class="btn btn-primary">查找</span></button>
             </form>
         </div>
     </div>
@@ -50,7 +50,7 @@
     </thead>
     <tbody>{% for n in text%}
       <tr>
-        <td>{{ n.orgSaleId }}</td>
+        <td class="yingfu">{{ n.orgSaleId }}</td>
         <td>
           <a href="{% url 'tieta:stationdetail' n.id %}">{{ n.stationName | default:"/"}}</a></td>
         <td>{{ n.requiredConfirmCode | default:"/"}}</td>

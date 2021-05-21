@@ -8,16 +8,16 @@
 <!-- 定义放置铁塔信息的div容器 -->
 <div class="table table-hover">
 <!-- 查询功能 -->
-    <div class="row">
+    <div class="card">
         <div class="col-auto mr-auto">
             <form class="form-inline" >
                 <label class="sr-only">content</label>
                 <input type="text" 
-                    class="form-control mb-2 mr-sm-2" 
+                    class="form-control" 
                     name="search" 
                     placeholder="搜索站点..." 
                     required
-                ><button type="submit">查找</span></button>
+                ><button type="submit" class="btn btn-primary">查找</span></button>
             </form>
         </div>
     </div>
@@ -32,26 +32,28 @@
             <hr>
         {% endif %}
     {% endif %}
-  <table>
+  <table >
     <thead>
       <tr>
-        <th>营服中心</th>
+        <th >营服中心</th>
         <th>站名</th>
         <th>站址编码</th>
         <th>电费单价</th>
         <th>年场地费</th>
         <th>详细地址</th>
+        <th>是否转签</th>
         <th>备注</th>
       </tr>
     </thead>
      <tbody>{% for n in text%}
       <tr>
-        <td>{{ n.orgSaleId | default:"/"}}</td>
+        <td class="yingfu">{{ n.orgSaleId | default:"/"}}</td>
         <td><a href="{% url 'tieta:stationdetail' n.id %}">{{ n.stationName | default:"/"}}</a></td>
         <td>{{ n.stationCode | default:"/"}}</td>
         <td>{{ n.powerRate | default:"/"}}</td>
         <td>{{ n.venueFee | default:"/"}}</td>
         <td>{{ n.stationDetail | default:"/"}}</td>
+        <td>{%if n.contract == '0' %}<div class="yijiao erro">未转签</div>{%elif n.contract == '1' %}<div class="yijiao right">已转签</div>{%else%}<div class="yijiao zijian">{{n.contract | default:"铁塔自建"}}</div>{%endif%}</td>
         <td>{{ n.notes | default:"/"}}</td>
       </tr>{% endfor %}
    </tbody>

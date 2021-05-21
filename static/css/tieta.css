@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    font-family: Nunito,sans-serif;
+    font-size: .9rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #6c757d;
+    background-color: #fafbfe;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+.card {
+    width: 500px;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid #eef2f7;
+    border-radius: .25rem;
+    flex: 1 1 auto;
+    padding: 1.5rem 1.5rem;
+}
+
+.yijiao{
+    width: 80px;
+    height: 24px;
+    border-radius: 2rem;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+}
+
+.zijian{
+    color: #FFFFFF;
+    font-weight:bold;
+    background-color: #748194;
+}
+
+.right{
+    color: #FFFFFF;
+    font-weight:bold;
+    background-color: #0acf97;
+}
+
+.erro{
+    color: #FFFFFF;
+    font-weight:bold;
+    background-color: #fa5c7c;
+}
+.yingfu{
+    font-weight:bold;
+}

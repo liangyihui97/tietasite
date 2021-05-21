@@ -175,9 +175,9 @@ def echarts_data(request):
     # 每个营服的场地费
     venuefee = StationInfo.objects.values('orgSaleId').annotate(venuefee=Sum('venueFee'))
     # 每个营服的服务费
-    productservicefee = StationCodeInfo.objects.values('orgSaleId').annotate(productservicefee=Sum('productServiceFee')).order_by('productservicefee')
+    productservicefee = StationCodeInfo.objects.values('orgSaleId').annotate(productservicefee=Sum('productServiceFee')).order_by('orgSaleIdNum')
     jsondata = {
-        'orgsaleid': [i['orgSaleId'] for i in productservicefee],
-        'productservicefee': [i['productservicefee'] for i in productservicefee],
+        '营服': [i['orgSaleId'] for i in productservicefee],
+        '服务费': [i['productservicefee'] for i in productservicefee],
     }
     return JsonResponse(jsondata)

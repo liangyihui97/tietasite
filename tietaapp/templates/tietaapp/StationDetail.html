@@ -25,10 +25,12 @@
 <p>详细地址：{{ station_info.stationDetail | default:"/"  }}</p>
 <p>电费单价：{{ station_info.powerRate | default:"/" }} 度/元</p>
 <p>场地费：{{ station_info.venueFee | default:"/" }} 元</p>
-<p>备注：{{ station_info.notes | default:"/"}}</p>
+<p>{%if n.contract == '0' %}<div class="yijiao erro">未转签</div>{%elif n.contract == '1' %}<div class="yijiao right">已转签</div>{%else%}<div class="yijiao zijian">{{n.contract | default:"铁塔自建"}}</div>{%endif%}</p>
+<p>备注：{{ station_info.notes | default:"无"}}</p>
         </div>
     </div>
 <!-- 显示站址编码下的全部订单 -->
+<div class="table table-hover">
   <table>
     <thead>
       <tr>
@@ -56,7 +58,7 @@
 </tr>{% endfor %}
 </tbody>
   </table>
-
+</div>
 
 </div>
  {% else %}

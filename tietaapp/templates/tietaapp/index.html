@@ -4,10 +4,9 @@
 <!-- 写入 base.html 中定义的 title -->
 {% block title %} 铁塔查询系统 {% endblock title %}
 {% block content %}
-
-<h1>白云铁塔查询系统</h1>
-<a href={% url 'tieta:stationinfo' %}>铁塔站址级查询</a></br>
-<a href={% url 'tieta:stationcodeinfo' %}>铁塔订单级查询</a></br></br>
+  <div class="container">
+<a style="text-decoration:none;font-size:20px;" href={% url 'tieta:stationinfo' %}>铁塔站址级查询</a>
+<a style="text-decoration:none;font-size:20px;" href={% url 'tieta:stationcodeinfo' %}>铁塔订单级查询</a></br></br>
 
 平均场地费：{{avg_venuefee.avg_venuefee | floatformat:0}} 元/年</br>
 平均服务费：{{avg_productservicefee | floatformat:0}} 元/年</br>
@@ -32,13 +31,13 @@ $.ajax({
           },
           tooltip: {},
           xAxis: {
-              data: data.orgsaleid
+              data: data['营服']
           },
           yAxis: {},
           series: [{
             name: '年租金(元)',
             type: 'bar',
-            data: data.productservicefee
+            data: data['服务费']
           }]
         };
 
@@ -53,5 +52,6 @@ $.ajax({
 
 
     </script>
+  </div>
 {% endblock content %}
 

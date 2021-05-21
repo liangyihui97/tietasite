@@ -49,9 +49,10 @@ class User(AbstractUser):
 class StationInfo(models.Model):
     id = models.BigIntegerField(blank=True, null=True)
     orgSaleId = models.CharField(max_length=20, blank=True, null=True)
+    orgSaleIdNum = models.CharField(max_length=5, blank=True, null=True)
     sceneDivide = models.CharField(max_length=20, blank=True, null=True)
-    stationName = models.CharField(max_length=50, blank=True, null=True)
-    stationNameDx = models.CharField(max_length=50, blank=True, null=True)
+    stationName = models.CharField(max_length=100, blank=True, null=True)
+    stationNameDx = models.CharField(max_length=100, blank=True, null=True)
     stationCode = models.BigIntegerField(primary_key=True)
     stationType = models.CharField(max_length=20, blank=True, null=True)
     stationDetail = models.CharField(max_length=255, blank=True, null=True)
@@ -66,7 +67,6 @@ class StationInfo(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'StationInfo'
         verbose_name_plural = '站址级管理'
 
 
@@ -76,7 +76,8 @@ class StationCodeInfo(models.Model):
     requiredConfirmCode = models.BigIntegerField(primary_key=True)
     stationCode = models.BigIntegerField(blank=True, null=True)
     orgSaleId = models.CharField(max_length=20, blank=True, null=True)
-    stationName = models.CharField(max_length=50, blank=True, null=True)
+    orgSaleIdNum = models.CharField(max_length=5, blank=True, null=True)
+    stationName = models.CharField(max_length=100, blank=True, null=True)
     towerType = models.CharField(max_length=20, blank=True, null=True)
     roomType = models.CharField(max_length=20, blank=True, null=True)
     towerShareNum = models.IntegerField(blank=True, null=True)
@@ -88,5 +89,4 @@ class StationCodeInfo(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'StationCodeInfo'
         verbose_name_plural = '订单级管理'
