@@ -53,7 +53,8 @@ class StationInfo(models.Model):
     sceneDivide = models.CharField(max_length=20, blank=True, null=True)
     stationName = models.CharField(max_length=100, blank=True, null=True)
     stationNameDx = models.CharField(max_length=100, blank=True, null=True)
-    stationCode = models.BigIntegerField(primary_key=True)
+    # 外键需要配置unique=True
+    stationCode = models.CharField(unique=True, primary_key=True, max_length=100)
     stationType = models.CharField(max_length=20, blank=True, null=True)
     stationDetail = models.CharField(max_length=255, blank=True, null=True)
     powerRate = models.DecimalField(max_digits=5, decimal_places=4, blank=True, null=True)
@@ -73,8 +74,8 @@ class StationInfo(models.Model):
 # 订单级信息
 class StationCodeInfo(models.Model):
     id = models.BigIntegerField(blank=True, null=True)
-    requiredConfirmCode = models.BigIntegerField(primary_key=True)
-    stationCode = models.BigIntegerField(blank=True, null=True)
+    requiredConfirmCode = models.CharField(unique=True, primary_key=True, max_length=100)
+    stationCode = models.CharField(max_length=100, blank=True, null=True)
     orgSaleId = models.CharField(max_length=20, blank=True, null=True)
     orgSaleIdNum = models.CharField(max_length=5, blank=True, null=True)
     stationName = models.CharField(max_length=100, blank=True, null=True)
@@ -90,3 +91,41 @@ class StationCodeInfo(models.Model):
     class Meta:
         managed = True
         verbose_name_plural = '订单级管理'
+
+
+# 租金
+class zujin(models.Model):
+    z = models.ForeignKey('StationCodeInfo', on_delete=models.CASCADE, to_field="requiredConfirmCode")
+    stationCode = models.CharField(max_length=100, blank=True, null=True)
+    requiredConfirmCode = models.CharField(max_length=100, blank=True, null=True)
+    stationName = models.CharField(max_length=100, blank=True, null=True)
+    zhangqi = models.CharField(max_length=50, blank=True, null=True)
+    payment = models.CharField(max_length=5, blank=True, null=True)
+    amount = models.CharField(max_length=50, blank=True, null=True)
+    note = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = True
+        verbose_name_plural = '租金信息'
+
+
+# 电费
+class dianfei(models.Model):
+    d = models.ForeignKey('StationInfo', on_delete=models.CASCADE, to_field="stationCode")
+    zhangqi = models.CharField(max_length=50, blank=True, null=True)
+    stationCode = models.CharField(max_length=100, blank=True, null=True)
+    dianbiao = models.CharField(max_length=100, blank=True, null=True)
+    starttime = models.CharField(max_length=50, blank=True, null=True)
+    startreading = models.CharField(max_length=50, blank=True, null=True)
+    endtime = models.CharField(max_length=50, blank=True, null=True)
+    endreading = models.CharField(max_length=50, blank=True, null=True)
+    powerRate = models.DecimalField(max_digits=5, decimal_places=4, blank=True, null=True)
+    average = models.CharField(max_length=50, blank=True, null=True)
+    share = models.CharField(max_length=50, blank=True, null=True)
+    sharedetail = models.CharField(max_length=50, blank=True, null=True)
+    amount = models.CharField(max_length=50, blank=True, null=True)
+    zhangqidetail = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = True
+        verbose_name_plural = '电费信息'

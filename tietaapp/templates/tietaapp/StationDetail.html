@@ -11,12 +11,12 @@
 {% block content %}
 {% if request.user.is_authenticated %}
 <!-- 文章详情 -->
-<div class="container">
+<div class="container"style="max-width: 1400px;">
 
     <div class="row">
         <!-- 标题及作者 -->
         <h1 class="col-12 mt-4 mb-4">{{ station_info.stationName }}</h1><a href="#" onclick="javascript:history.back(-1);">返回上一级</a>
-        <div class="col-12 alert alert-success">归属营服：{{ station_info.orgSaleId | default:"/"}}</div>
+<div class="col-12 alert alert-success">归属营服：{{ station_info.orgSaleId | default:"/"}}</div>
         <!-- 文章正文 -->
         <div class="col-12">
 <p>电信名称：{{ station_info.stationNameDx | default:"/" }}</p>
@@ -25,8 +25,8 @@
 <p>详细地址：{{ station_info.stationDetail | default:"/"  }}</p>
 <p>电费单价：{{ station_info.powerRate | default:"/" }} 度/元</p>
 <p>场地费：{{ station_info.venueFee | default:"/" }} 元</p>
-<p>{%if n.contract == '0' %}<div class="yijiao erro">未转签</div>{%elif n.contract == '1' %}<div class="yijiao right">已转签</div>{%else%}<div class="yijiao zijian">{{n.contract | default:"铁塔自建"}}</div>{%endif%}</p>
 <p>备注：{{ station_info.notes | default:"无"}}</p>
+<p>{%if station_info.contract == '0' %}<div class="yijiao erro">未转签</div>{%elif station_info.contract == '1' %}<div class="yijiao right">已转签</div>{%else%}<div class="yijiao zijian">{{station_info.contract | default:"铁塔自建"}}</div>{%endif%}</p>
         </div>
     </div>
 <!-- 显示站址编码下的全部订单 -->
@@ -55,6 +55,45 @@
 <td>{{n.towerShareNum}}</td>
 <td>{{ n.roomShareNum }}</td>
 <td>{{ n.productServiceFee }}</td>
+</tr>{% endfor %}
+</tbody>
+  </table>
+</div>
+
+<!-- 显示站址编码下的电费支付情况 -->
+<div class="table table-hover">
+  <table>
+    <thead>
+      <tr>
+        <th>账期</th>
+        <th>电表号</th>
+        <th>上期抄表时间</th>
+        <th>上期抄表读数</th>
+        <th>本期抄表时间</th>
+        <th>本期抄表读数</th>
+        <th>电费单价</th>
+        <th>月均电量</th>
+        <th>电信分摊比例</th>
+        <th>分摊运营商</th>
+        <th>支付金额</th>
+        <th>结算账期</th>
+      </tr>
+    </thead>
+<tbody>
+{% for n in dianfei_info%}
+<tr>
+<td>{{n.zhangqi}}</td>
+<td>{{n.dianbiao}}</td>
+<td>{{n.starttime}}</td>
+<td>{{n.startreading}}</td>
+<td>{{n.endtime}}</td>
+<td>{{n.endreading}}</td>
+<td>{{ n.powerRate }}</td>
+<td>{{ n.average | floatformat:0}}</td>
+<td>{% widthratio n.share 1 100%}%</td>
+<td>{{ n.sharedetail | default:"电信"}}</td>
+<td>{{ n.amount | floatformat:2}}</td>
+<td>{{ n.zhangqidetail}}</td>
 </tr>{% endfor %}
 </tbody>
   </table>

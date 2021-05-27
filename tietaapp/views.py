@@ -10,7 +10,7 @@ from django.urls import resolve, reverse
 # 验证明文密码与加密密码是否一致
 from django.contrib.auth.hashers import check_password
 
-from .models import StationInfo, StationCodeInfo, User
+from .models import StationInfo, StationCodeInfo, User, dianfei
 # 引入Q对象用于查询功能
 from django.db.models import Q, Avg, Max, Min, Sum, Count
 
@@ -159,7 +159,8 @@ def stationcodeinfo(request):
 def stationdetail(request, id):
     station_info = StationInfo.objects.get(id=id)
     station_code_info = StationCodeInfo.objects.filter(id=id)
-    context = {'station_info': station_info, 'station_code_info': station_code_info}
+    dianfei_info = dianfei.objects.filter(stationCode=station_info.stationCode)
+    context = {'station_info': station_info, 'station_code_info': station_code_info, 'dianfei_info': dianfei_info}
     return render(request, 'tietaapp/StationDetail.html', context)
 
 

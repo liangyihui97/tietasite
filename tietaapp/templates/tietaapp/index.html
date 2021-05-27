@@ -4,7 +4,7 @@
 <!-- 写入 base.html 中定义的 title -->
 {% block title %} 铁塔查询系统 {% endblock title %}
 {% block content %}
-  <div class="container">
+  <div class="container"style="max-width: 1200px;">
 <a style="text-decoration:none;font-size:20px;" href={% url 'tieta:stationinfo' %}>铁塔站址级查询</a>
 <a style="text-decoration:none;font-size:20px;" href={% url 'tieta:stationcodeinfo' %}>铁塔订单级查询</a></br></br>
 
