@@ -6,7 +6,7 @@
 {% block content %} 
 {% if request.user.is_authenticated %}
 <!-- 定义放置文章标题的div容器 -->
-<div class="table table-hover container""style="max-width: 1400px;">
+<div class="table table-hover container" style="max-width: 1400px;">
 
 <!-- 查询功能 -->
     <div class="card">
@@ -16,26 +16,34 @@
                 <input type="text" 
                     class="form-control" 
                     name="search" 
-                    placeholder="搜索站点..." 
+                    placeholder="查找站点" 
                     required
                 ><button type="submit" class="btn btn-primary">查找</span></button>
+    <!-- 新增，搜索提示语 -->
+{% if search %}
+        {% if text%}
+            &nbsp;&nbsp;<h6><span style="color: #0acf97;font-weight:bold">"{{ search }}"</span>&nbsp的搜索结果如下：</h6> 
+        {% else %}
+            &nbsp;&nbsp;<h6>未找到与&nbsp<span style="color: #fa5c7c;font-weight:bold">"{{ search }}"</span>&nbsp相关站址</h6>
+        {% endif %}
+    {% endif %}
             </form>
         </div>
     </div>
 
-    <!-- 新增，搜索提示语 -->
-    {% if search %}
-        {% if text%}
-            <h4><span style="color: red">{{ search }}</span>的搜索结果如下：</h4>
-            <hr>        
-        {% else %}
-            <h4>未匹配到与<span style="color: red">{{ search }}</span>相关站址</h4>
-            <hr>
-        {% endif %}
-    {% endif %}
-
-  <table>
-    <thead>
+<!-- 固定高度 -->
+  <table class="fixed">
+<!-- 固定宽度 -->
+<col width="10%" />
+<col width="16%" />
+<col width="10%" />
+<col width="13%" />
+<col width="10%" />
+<col width="15%" />
+<col width="10%" />
+<col width="10%" />
+<col width="6%" />
+    <thead >
       <tr>
         <th>营服中心</th>
         <th>站名</th>
@@ -45,21 +53,21 @@
         <th>房型</th>
         <th>塔共享数</th>
         <th>房共享数</th>
-        <th>年站址服务费</th>
+        <th>年服务费</th>
       </tr>
     </thead>
     <tbody>{% for n in text%}
       <tr>
-        <td class="yingfu">{{ n.orgSaleId }}</td>
-        <td>
-          <a href="{% url 'tieta:stationdetail' n.id %}">{{ n.stationName | default:"/"}}</a></td>
-        <td>{{ n.requiredConfirmCode | default:"/"}}</td>
-        <td>{{ n.stationCode | default:"/"}}</td>
-        <td>{{ n.towerType | default:"/"}}</td>
-        <td>{{ n.roomType | default:"/"}}</td>
-        <td>{{ n.towerShareNum | default:"/"}}</td>
-        <td>{{ n.roomShareNum | default:"/"}}</td>
-        <td>{{ n.productServiceFee | default:"/"}}</td>
+        <td class="yingfu"><div>{{ n.orgSaleId }}</div></td>
+        <td><div>
+          <a href="{% url 'tieta:stationdetail' n.id %}">{{ n.stationName | default:"/"}}</a></div></td>
+        <td><div>{{ n.requiredConfirmCode | default:"/"}}</div></td>
+        <td><div>{{ n.stationCode | default:"/"}}</div></td>
+        <td><div>{{ n.towerType | default:"/"}}</div></td>
+        <td><div>{{ n.roomType | default:"/"}}</div></td>
+        <td><div>{{ n.towerShareNum | default:"/"}}</div></td>
+        <td><div>{{ n.roomShareNum | default:"/"}}</div></td>
+        <td><div>{{ n.productServiceFee | default:"/"}}</div></td>
       </tr>{% endfor %}</tbody>
   </table>
 </div>
@@ -68,14 +76,14 @@
   <div class="m-auto">
     <span class="step-links">
       <!-- 如果不是第一页，则显示上翻按钮 -->{% if text.has_previous %}
-      <a href="?page=1	" class="btn btn-success">&laquo; 1</a>
+      <a href="?page=1&search={{ search }}" class="btn btn-success">&laquo; 1</a>
       <span>...</span>
-      <a href="?page={{ text.previous_page_number }}" class="btn btn-secondary">{{ text.previous_page_number }}</a>{% endif %}
+      <a href="?page={{ text.previous_page_number }}&search={{ search }}" class="btn btn-secondary">{{ text.previous_page_number }}</a>{% endif %}
       <!-- 当前页面 -->
       <span class="current btn btn-danger btn-lg">{{ text.number }}</span>
       <!-- 如果不是最末页，则显示下翻按钮 -->{% if text.has_next %}
-      <a href="?page={{ text.next_page_number }}" class="btn btn-secondary">{{ text.next_page_number }}</a>
+      <a href="?page={{ text.next_page_number }}&search={{ search }}" class="btn btn-secondary">{{ text.next_page_number }}</a>
       <span>...</span>
-      <a href="?page={{ text.paginator.num_pages }}" class="btn btn-success">{{ text.paginator.num_pages }} &raquo;</a>{% endif %}</span></div>
+      <a href="?page={{ text.paginator.num_pages }}&search={{ search }}" class="btn btn-success">{{ text.paginator.num_pages }} &raquo;</a>{% endif %}</span></div>
 </div>
 </div>{% else %} 请先登录 {% endif %} {% endblock content %}

@@ -91,11 +91,15 @@ def index(request):
     # 去重计数,(count=Count('id', distinct=True))中的count为自定义字典名称
     count_productservicefee = StationCodeInfo.objects.aggregate(count_productservicefee=Count('id', distinct=True))
     avg_productservicefee = sum_productservicefee['sum_productservicefee']/count_productservicefee['count_productservicefee']
+    maxdianfei = StationInfo.objects.all().order_by('-powerRate')[:3]
+    maxzujin = StationInfo.objects.all().order_by('-venueFee')[:3]
     context = {
         'avg_venuefee': avg_venuefee,
         'sum_productservicefee': sum_productservicefee,
         'count_productservicefee': count_productservicefee,
         'avg_productservicefee': avg_productservicefee,
+        'maxdianfei': maxdianfei,
+        'maxzujin': maxzujin
     }
     return render(request, 'tietaapp/index.html', context)
 
@@ -121,11 +125,15 @@ def stationinfo(request):
     if len(station_list) >= 8:
         paginator = Paginator(station_list, 8)
         page = request.GET.get('page')
+        text = paginator.get_page(page)
+    elif len(station_list) == 0:
+        context = {'text': '', 'search': search}
+        return render(request, 'tietaapp/StationInfo.html', context)
     else:
         paginator = Paginator(station_list, len(station_list))
         page = request.GET.get('page')
-    stations = paginator.get_page(page)
-    context = {'text': stations, 'search': search,}
+        text = paginator.get_page(page)
+    context = {'text': text, 'search': search,}
     return render(request, 'tietaapp/StationInfo.html', context)
 
     # text = StationInfo.objects.all()
@@ -148,10 +156,14 @@ def stationcodeinfo(request):
     if len(station_list) >= 8:
         paginator = Paginator(station_list, 8)
         page = request.GET.get('page')
+        stations = paginator.get_page(page)
+    elif len(station_list) == 0:
+        context = {'text': '', 'search': search}
+        return render(request, 'tietaapp/StationCodeInfo.html', context)
     else:
         paginator = Paginator(station_list, len(station_list))
         page = request.GET.get('page')
-    stations = paginator.get_page(page)
+        stations = paginator.get_page(page)
     context = {'text': stations, 'search': search}
     return render(request, 'tietaapp/StationCodeInfo.html', context)
 
@@ -174,11 +186,19 @@ def view_500(request):
 
 def echarts_data(request):
     # 每个营服的场地费
-    venuefee = StationInfo.objects.values('orgSaleId').annotate(venuefee=Sum('venueFee'))
+    venuefee = StationInfo.objects.values('orgSaleId').annotate(venuefee=Sum('venueFee')).order_by('orgSaleIdNum')
     # 每个营服的服务费
     productservicefee = StationCodeInfo.objects.values('orgSaleId').annotate(productservicefee=Sum('productServiceFee')).order_by('orgSaleIdNum')
+    stationnum = StationInfo.objects.extra(select={'name': 'orgSaleId'}).values('name').annotate(value=Count('orgSaleId')).order_by('orgSaleIdNum')
+    avergcost = []
+    n = 0
+    for i in stationnum:
+        avergcost.append(int(productservicefee[n]['productservicefee']/i['value']))
+        n = n+1
     jsondata = {
         '营服': [i['orgSaleId'] for i in productservicefee],
-        '服务费': [i['productservicefee'] for i in productservicefee],
+        '服务费': [int(i['productservicefee']/10000) for i in productservicefee],
+        '站址数': [{'value': i['value'], 'name': i['name']} for i in stationnum],
+        '年均': avergcost,
     }
     return JsonResponse(jsondata)

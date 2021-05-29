@@ -1,25 +1,40 @@
-<!-- 定义导航栏 -->
+<!-- 载入静态文件 -->
+{% load staticfiles %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container""style="max-width: 1200px;">
-
-    <!-- 导航栏商标 -->
-    <a class="navbar-brand" href="{%url 'tieta:index'%}">铁塔站址信息</a>
-
-    <!-- 导航入口 -->
-    <div>
-      <ul class="navbar-nav">
-        <!-- 条目 -->
+  <div class="container"style="max-width: 1200px;">
+<img style="height:45px;padding-left:5px"src="{% static "/img/tower.png"%}" alt="tower">
+    <a class="navbar-brand" href="{%url 'tieta:index'%}"style="padding-left:5px">铁塔站址信息</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'tieta:stationinfo' %}">铁塔站址级查询<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'tieta:stationcodeinfo' %}">铁塔订单级查询</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-sub  pull-right">
 {% if request.user.is_authenticated %}
-
-    <div class="nav-link">{{ request.user.username }}，你好  </div>  
-    <a  style="float: right;" class="nav-link" href="{%url 'tieta:logout'%}">注销</a>
+<img class="user" src="{% static "/img/user.png"%}" alt="tower">
+        <li class="nav-item"><div class="nav-link href="#">{{ request.user.username }}，你好</div></li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'tieta:logout'%}">注销</a>
+        </li>
  {% else %}
+        <li class="nav-item">
           <a class="nav-link" href="{%url 'tieta:index'%}">首页</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{%url 'tieta:login'%}">登录</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{%url 'tieta:register'%}">注册</a>
+        </li>
 {% endif %}
       </ul>
     </div>
-
-  </div>
-</nav>
+    </div>
+  </nav>

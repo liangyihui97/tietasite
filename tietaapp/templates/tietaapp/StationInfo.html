@@ -6,7 +6,7 @@
 {% block content %} 
 {% if request.user.is_authenticated %}
 <!-- 定义放置铁塔信息的div容器 -->
-<div class="table table-hover container""style="max-width: 1400px;">
+<div class="table table-hover container"style="min-width: 1400px;">
 <!-- 查询功能 -->
     <div class="card">
         <div class="col-auto mr-auto">
@@ -15,46 +15,54 @@
                 <input type="text" 
                     class="form-control" 
                     name="search" 
-                    placeholder="搜索站点..." 
+                    placeholder="查找站点" 
                     required
-                ><button type="submit" class="btn btn-primary">查找</span></button>
+                ><button type="submit" class="btn btn-primary">查找</span></button>    
+    <!-- 新增，搜索提示语 -->
+{% if search %}
+        {% if text%}
+            &nbsp;&nbsp;<h6><span style="color: #0acf97;font-weight:bold">"{{ search }}"</span>&nbsp的搜索结果如下：</h6> 
+        {% else %}
+            &nbsp;&nbsp;<h6>未找到与&nbsp<span style="color: #fa5c7c;font-weight:bold">"{{ search }}"</span>&nbsp相关站址</h6>
+        {% endif %}
+    {% endif %}
             </form>
         </div>
     </div>
 
-    <!-- 新增，搜索提示语 -->
-    {% if search %}
-        {% if text%}
-            <h4><span style="color: red">{{ search }}</span>的搜索结果如下：</h4>
-            <hr>        
-        {% else %}
-            <h4>未匹配到与<span style="color: red">{{ search }}</span>相关站址</h4>
-            <hr>
-        {% endif %}
-    {% endif %}
-  <table >
+
+
+  <table class="fixed">
+<col width="10%" />
+<col width="15%" />
+<col width="15%" />
+<col width="8%" />
+<col width="7%" />
+<col width="25%" />
+<col width="10%" />
+<col width="9%" />
     <thead>
       <tr>
-        <th >营服中心</th>
-        <th>站名</th>
-        <th>站址编码</th>
-        <th>电费单价</th>
-        <th>年场地费</th>
-        <th>详细地址</th>
-        <th>是否转签</th>
-        <th>备注</th>
+        <th ><div>营服中心</div></th>
+        <th><div>站名</div></th>
+        <th><div>站址编码</div></th>
+        <th><div>电费单价</div></th>
+        <th><div>年场地费</div></th>
+        <th><div>详细地址</div></th>
+        <th><div>是否转签</div></th>
+        <th><div>备注</div></th>
       </tr>
     </thead>
      <tbody>{% for n in text%}
       <tr>
-        <td class="yingfu">{{ n.orgSaleId | default:"/"}}</td>
-        <td><a href="{% url 'tieta:stationdetail' n.id %}">{{ n.stationName | default:"/"}}</a></td>
-        <td>{{ n.stationCode | default:"/"}}</td>
-        <td>{{ n.powerRate | default:"/"}}</td>
-        <td>{{ n.venueFee | default:"/"}}</td>
-        <td>{{ n.stationDetail | default:"/"}}</td>
-        <td>{%if n.contract == '0' %}<div class="yijiao erro">未转签</div>{%elif n.contract == '1' %}<div class="yijiao right">已转签</div>{%else%}<div class="yijiao zijian">{{n.contract | default:"铁塔自建"}}</div>{%endif%}</td>
-        <td>{{ n.notes | default:"/"}}</td>
+        <td class="yingfu"><div>{{ n.orgSaleId | default:"/"}}</div></td>
+        <td><div><a href="{% url 'tieta:stationdetail' n.id %}">{{ n.stationName | default:"/"}}</a></div></td>
+        <td><div>{{ n.stationCode | default:"/"}}</div></td>
+        <td><div>{{ n.powerRate |floatformat:2 | default:"/"}}</div></td>
+        <td><div>{{ n.venueFee | default:"/"}}</div></td>
+        <td><div>{{ n.stationDetail | default:"/"}}</div></td>
+        <td><div>{%if n.contract == '0' %}<div class="yijiao erro">未转签</div>{%elif n.contract == '1' %}<div class="yijiao right">已转签</div>{%else%}<div class="yijiao zijian">{{n.contract | default:"铁塔自建"}}</div>{%endif%}</div></td>
+        <td><div>{{ n.notes | default:"/"}}</div></td>
       </tr>{% endfor %}
    </tbody>
   </table>
@@ -64,14 +72,14 @@
   <div class="m-auto">
     <span class="step-links">
       <!-- 如果不是第一页，则显示上翻按钮 -->{% if text.has_previous %}
-      <a href="?page=1	" class="btn btn-success">&laquo; 1</a>
+      <a href="?page=1&search={{ search }}" class="btn btn-success">&laquo; 1</a>
       <span>...</span>
-      <a href="?page={{ text.previous_page_number }}" class="btn btn-secondary">{{ text.previous_page_number }}</a>{% endif %}
+      <a href="?page={{ text.previous_page_number }}&search={{ search }}" class="btn btn-secondary">{{ text.previous_page_number }}</a>{% endif %}
       <!-- 当前页面 -->
       <span class="current btn btn-danger btn-lg">{{ text.number }}</span>
       <!-- 如果不是最末页，则显示下翻按钮 -->{% if text.has_next %}
-      <a href="?page={{ text.next_page_number }}" class="btn btn-secondary">{{ text.next_page_number }}</a>
+      <a href="?page={{ text.next_page_number }}&search={{ search }}" class="btn btn-secondary">{{ text.next_page_number }}</a>
       <span>...</span>
-      <a href="?page={{ text.paginator.num_pages }}" class="btn btn-success">{{ text.paginator.num_pages }} &raquo;</a>{% endif %}</span></div>
+      <a href="?page={{ text.paginator.num_pages }}&search={{ search }}" class="btn btn-success">{{ text.paginator.num_pages }} &raquo;</a>{% endif %}</span></div>
 </div>
 </div>{% else %} 请先登录 {% endif %} {% endblock content %}

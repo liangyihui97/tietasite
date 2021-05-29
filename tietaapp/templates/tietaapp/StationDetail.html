@@ -23,8 +23,8 @@
 <p>站址编码：{{ station_info.stationCode | default:"/"  }}</p>
 <p>基站类型：{{ station_info.stationType | default:"/"  }}</p>
 <p>详细地址：{{ station_info.stationDetail | default:"/"  }}</p>
-<p>电费单价：{{ station_info.powerRate | default:"/" }} 度/元</p>
-<p>场地费：{{ station_info.venueFee | default:"/" }} 元</p>
+<p>电费单价：<dianfei>{{ station_info.powerRate | default:"/" }}</dianfei> 度/元</p>
+<p>场地费：<zujin>{{ station_info.venueFee | default:"/" }}</zujin> 元</p>
 <p>备注：{{ station_info.notes | default:"无"}}</p>
 <p>{%if station_info.contract == '0' %}<div class="yijiao erro">未转签</div>{%elif station_info.contract == '1' %}<div class="yijiao right">已转签</div>{%else%}<div class="yijiao zijian">{{station_info.contract | default:"铁塔自建"}}</div>{%endif%}</p>
         </div>

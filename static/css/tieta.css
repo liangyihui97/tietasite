@@ -10,7 +10,6 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 .card {
-    width: 500px;
     position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -59,4 +58,40 @@ body {
 }
 .yingfu{
     font-weight:bold;
+}
+
+table.fixed { 
+table-layout:fixed; 
+}
+
+table.fixed td { 
+overflow: hidden; 
+
+}
+
+table.fixed div { 
+height:20px;
+overflow:hidden;
+
+}
+
+.user{
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #7f7f8c;
+}
+zujin{
+color:#727cf5;
+font-size: 1rem;
+line-height: 2;
+font-weight:bold
+}
+
+dianfei{
+color:#e83e8c;
+font-size: 1rem;
+line-height: 2;
+font-weight:bold
 }
