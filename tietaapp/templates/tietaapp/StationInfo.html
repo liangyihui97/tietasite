@@ -6,7 +6,7 @@
 {% block content %} 
 {% if request.user.is_authenticated %}
 <!-- 定义放置铁塔信息的div容器 -->
-<div class="table table-hover container"style="min-width: 1400px;">
+<div class="table table-hover container"style="min-width: 1300px;">
 <!-- 查询功能 -->
     <div class="card">
         <div class="col-auto mr-auto">
@@ -82,4 +82,5 @@
       <span>...</span>
       <a href="?page={{ text.paginator.num_pages }}&search={{ search }}" class="btn btn-success">{{ text.paginator.num_pages }} &raquo;</a>{% endif %}</span></div>
 </div>
-</div>{% else %} 请先登录 {% endif %} {% endblock content %}
+</div>
+{% else %} 请先登录 {% endif %} {% endblock content %}

@@ -4,53 +4,60 @@
 <!-- 写入 base.html 中定义的 title -->
 {% block title %} 铁塔站址信息查询系统 {% endblock title %}
 {% block content %}
-  <div class="container"style="max-width: 1200px;font-size: 1rem;line-height: 2">
- <div style="height:100px;"class="shadow-sm p-3 mb-3 mt-3 bg-white rounded">
-<div class ="d-flex justify-content-center" style="font-weight:bold">
-<div style="float:left" class="mr-5">
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-yen" viewBox="0 0 16 16">
-  <path d="M8.75 14v-2.629h2.446v-.967H8.75v-1.31h2.445v-.967H9.128L12.5 2h-1.699L8.047 7.327h-.086L5.207 2H3.5l3.363 6.127H4.778v.968H7.25v1.31H4.78v.966h2.47V14h1.502z"/>
-</svg>
-平均场地费：<zujin>{{avg_venuefee.avg_venuefee | floatformat:0}}</zujin> 元/年</br>
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-yen" viewBox="0 0 16 16">
-  <path d="M8.75 14v-2.629h2.446v-.967H8.75v-1.31h2.445v-.967H9.128L12.5 2h-1.699L8.047 7.327h-.086L5.207 2H3.5l3.363 6.127H4.778v.968H7.25v1.31H4.78v.966h2.47V14h1.502z"/>
-</svg>
-平均服务费：<zujin>{{avg_productservicefee | floatformat:0}}</zujin> 元/年</br>
-</div>
-<div style="float:left"class="ml-5">
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-yen" viewBox="0 0 16 16">
-  <path d="M8.75 14v-2.629h2.446v-.967H8.75v-1.31h2.445v-.967H9.128L12.5 2h-1.699L8.047 7.327h-.086L5.207 2H3.5l3.363 6.127H4.778v.968H7.25v1.31H4.78v.966h2.47V14h1.502z"/>
-</svg>
-年服务费：<zujin>{{sum_productservicefee.sum_productservicefee | floatformat:0}}</zujin> 元/年</br>
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ol" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
-  <path d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z"/>
-</svg> 白云站址数：{{count_productservicefee.count_productservicefee}} 个
-</div>
-</div>
-</div>
- <div id="chart1" style="height:450px;width: 650px;"class="shadow-sm p-3 mb-3 bg-white rounded float-left"></div>
-<div id="chart2" style="height:450px;width: 500px;margin-left:10px"class="shadow-sm p-3 mb-3 bg-white rounded float-right"></div>
- <div id="chart3" style="height:450px;width: 650px;"class="shadow-sm p-3 mb-3 bg-white rounded float-left"></div>
-<div style="height:450px;width: 500px;margin-left:10px;line-height: 2.5;"class="shadow-sm p-3 mb-5 bg-white rounded float-right">
-电费超标预警：
-<ul class="ml-5 mr-5">
-{%for i in maxdianfei%}
-<li><div style="float:left">{{i.stationName}}</div><div style="float:right"><dianfei>{{i.powerRate | floatformat:2}}</dianfei>元/度</div></li>
-{% endfor %}
-</ul>
-</br>
-租金超标预警：
-<ul class="ml-5 mr-5">
-{%for i in maxzujin%}
-<li><div style="float:left">{{i.stationName}}</div><div style="float:right"><zujin>{{i.venueFee}}</zujin>元</div></li>
-{% endfor %}
-</ul>
-</div>
+<div class="container" style="max-width: 1200px;font-size: 1rem;line-height: 2">
+<!--添加阴影 -->
+  <div style="height:auto;" class="shadow-sm p-3 mb-3 mt-3 bg-white rounded">
+<!-- 居中 -->
+    <div class="d-flex justify-content-center" style="font-weight:bold">
+      <div style="float:left" class="mr-5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-yen" viewBox="0 0 16 16">
+          <path d="M8.75 14v-2.629h2.446v-.967H8.75v-1.31h2.445v-.967H9.128L12.5 2h-1.699L8.047 7.327h-.086L5.207 2H3.5l3.363 6.127H4.778v.968H7.25v1.31H4.78v.966h2.47V14h1.502z" /></svg>
+平均场地费：
+        <zujin>{{avg_venuefee.avg_venuefee | floatformat:0}}</zujin>元/年</br>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-yen" viewBox="0 0 16 16">
+          <path d="M8.75 14v-2.629h2.446v-.967H8.75v-1.31h2.445v-.967H9.128L12.5 2h-1.699L8.047 7.327h-.086L5.207 2H3.5l3.363 6.127H4.778v.968H7.25v1.31H4.78v.966h2.47V14h1.502z" /></svg>
+平均服务费：
+        <zujin>{{ avg_productservicefee | floatformat:0}}</zujin>元/年</br></div>
+      <div style="float:left" class="mr-5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-yen" viewBox="0 0 16 16">
+          <path d="M8.75 14v-2.629h2.446v-.967H8.75v-1.31h2.445v-.967H9.128L12.5 2h-1.699L8.047 7.327h-.086L5.207 2H3.5l3.363 6.127H4.778v.968H7.25v1.31H4.78v.966h2.47V14h1.502z" /></svg>
+年服务费：
+        <zujin>{%widthratio sum_productservicefee.sum_productservicefee 10000 1%}</zujin>万元/年</br>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-charge" viewBox="0 0 16 16">
+          <path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41 4.157 8.5z" /></svg>
+平均电费单价：
+        <dianfei>{{avg_powerrate | floatformat:4}}{{count_powerrate}}</dianfei>元/年</br></div>
+      <div style="float:left" class="mr-5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ol" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z" />
+          <path d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z" /></svg>
+白云站址数：{{count_productservicefee.count_productservicefee}} 个</div>
+    </div>
+  </div>
+  <!-- 柔性调整大小 -->
+  <div class="d-flex justify-content-between">
+    <div id="chart1" style="height:450px;width: 55%;" class="shadow-sm p-3 mb-3 bg-white rounded float-left"></div>
+    <div id="chart2" style="height:450px;width: 45%;margin-left:16px" class="shadow-sm p-3 mb-3 bg-white rounded float-left"></div>
+  </div>
+  <div class="d-flex justify-content-between">
+    <div id="chart3" style="height:450px;;width: 55%;" class="shadow-sm p-3 mb-3 bg-white rounded float-left"></div>
+    <div style="height:450px;width: 45%;margin-left:15px;line-height: 2.5;" class="shadow-sm p-3 mb-5 bg-white rounded float-left">电费超标预警：
+      <ul class="ml-5 mr-5">{%for i in maxdianfei%}
+        <li>
+          <div style="float:left">{{i.stationName}}</div>
+          <div style="float:right">
+            <dianfei>{{i.powerRate | floatformat:2}}</dianfei>元/度</div></li>{% endfor %}</ul>
+      </br>租金超标预警：
+      <ul class="ml-5 mr-5">{%for i in maxzujin%}
+        <li>
+          <div style="float:left">{{i.stationName}}</div>
+          <div style="float:right">
+            <zujin>{{i.venueFee}}</zujin>元</div></li>{% endfor %}</ul>
+    </div>
 <script type="text/javascript">// 基于准备好的dom，初始化echarts实例
   $.ajax({
     type: "get",
-    url: "{%url 'tieta:apiecharts'%}",
+    url: "/tietaapp/api/echarts/",
     success: function(data) {
       chart1fun(data)
       chart2fun(data)
@@ -61,6 +68,8 @@
       alert('Error: ajax 请求出错！')
     }
   });
+
+
   var myChart1 = echarts.init(document.getElementById('chart1'));
   function chart1fun(data) {
     option = {
@@ -94,6 +103,10 @@
 
     // 使用刚指定的配置项和数据显示图表。
     myChart1.setOption(option);
+//自适应div大小
+window.addEventListener("resize",function(){
+    myChart1.resize();
+});
   }
   var myChart2 = echarts.init(document.getElementById('chart2'));
 function chart2fun(data){
@@ -111,19 +124,23 @@ function chart2fun(data){
       roseType: 'angle',
       data: data['站址数'],
  itemStyle:{
-            normal:{
-                  label:{
-                    show: true,
-                    formatter: '{b}:{c}个 '
-                  },
-                  labelLine :{show:true}
-                }
-            }
+            normal:{
+                  label:{
+                    show: true,
+                    formatter: '{b}:{c}个 '
+                  },
+                  labelLine :{show:true}
+                }
+            }
     }]
   };
 
   // 使用刚指定的配置项和数据显示图表。
   myChart2.setOption(option);
+//自适应div大小
+window.addEventListener("resize",function(){
+    myChart2.resize();
+});
 }
 
   var myChart3 = echarts.init(document.getElementById('chart3'));
@@ -160,8 +177,11 @@ function chart3fun(data){
 
   // 使用刚指定的配置项和数据显示图表。
   myChart3.setOption(option);
+//自适应div大小
+window.addEventListener("resize",function(){
+    myChart3.resize();
+});
 }
 </script>
   </div>
 {% endblock content %}
-

@@ -88,9 +88,13 @@ def index(request):
     avg_venuefee = StationInfo.objects.aggregate(avg_venuefee=Avg('venueFee'))
     # 查询白云平均服务费，数据格式{'sum_productservicefee': Decimal('48981848.31')}
     sum_productservicefee = StationCodeInfo.objects.aggregate(sum_productservicefee=Sum('productServiceFee'))
+    sum_powerrate = StationInfo.objects.aggregate(sum_powerrate=Sum('powerRate'))
     # 去重计数,(count=Count('id', distinct=True))中的count为自定义字典名称
     count_productservicefee = StationCodeInfo.objects.aggregate(count_productservicefee=Count('id', distinct=True))
+    # 计算大于0用电量的站址数
+    count_powerrate = StationInfo.objects.filter(powerRate__gt=0).aggregate(count_powerrate=Count('id'))
     avg_productservicefee = sum_productservicefee['sum_productservicefee']/count_productservicefee['count_productservicefee']
+    avg_powerrate = sum_powerrate['sum_powerrate']/count_powerrate['count_powerrate']
     maxdianfei = StationInfo.objects.all().order_by('-powerRate')[:3]
     maxzujin = StationInfo.objects.all().order_by('-venueFee')[:3]
     context = {
@@ -98,6 +102,7 @@ def index(request):
         'sum_productservicefee': sum_productservicefee,
         'count_productservicefee': count_productservicefee,
         'avg_productservicefee': avg_productservicefee,
+        'avg_powerrate': avg_powerrate,
         'maxdianfei': maxdianfei,
         'maxzujin': maxzujin
     }

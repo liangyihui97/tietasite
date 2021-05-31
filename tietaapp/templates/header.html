@@ -3,32 +3,30 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container"style="max-width: 1200px;">
 <img style="height:45px;padding-left:5px"src="{% static "/img/tower.png"%}" alt="tower">
-    <a class="navbar-brand" href="{%url 'tieta:index'%}"style="padding-left:5px">铁塔站址信息</a>
+    <a class="navbar-brand" href="{%url 'tieta:index'%}"style="padding-left:5px">铁塔站址系统</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'tieta:stationinfo' %}">铁塔站址级查询<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{% url 'tieta:stationinfo' %}">站址级查询<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'tieta:stationcodeinfo' %}">铁塔订单级查询</a>
+          <a class="nav-link" href="{% url 'tieta:stationcodeinfo' %}">订单级查询</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-sub  pull-right">
+      <ul class="nav navbar-nav navbar-sub">
 {% if request.user.is_authenticated %}
-<img class="user" src="{% static "/img/user.png"%}" alt="tower">
+<img class="user" src="{% static "/img/userlogin.png"%}" alt="user">
         <li class="nav-item"><div class="nav-link href="#">{{ request.user.username }}，你好</div></li>
         <li class="nav-item">
           <a class="nav-link" href="{%url 'tieta:logout'%}">注销</a>
         </li>
  {% else %}
+<img class="user" src="{% static "/img/user.png"%}" alt="user">
         <li class="nav-item">
-          <a class="nav-link" href="{%url 'tieta:index'%}">首页</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'tieta:login'%}">登录</a>
+          <a class="nav-link" href="{%url 'tieta:login'%}">请先登录</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{%url 'tieta:register'%}">注册</a>
