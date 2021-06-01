@@ -207,3 +207,7 @@ def echarts_data(request):
         '年均': avergcost,
     }
     return JsonResponse(jsondata)
+
+def map(request):
+
+    return render(request, 'tietaapp/map.html', context={})

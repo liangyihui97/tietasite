@@ -1,7 +1,7 @@
 <!-- 载入静态文件 -->
 {% load staticfiles %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container"style="max-width: 1200px;">
+  <div class="container">
 <img style="height:45px;padding-left:5px"src="{% static "/img/tower.png"%}" alt="tower">
     <a class="navbar-brand" href="{%url 'tieta:index'%}"style="padding-left:5px">铁塔站址系统</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,6 +14,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'tieta:stationcodeinfo' %}">订单级查询</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'tieta:map' %}">站址地图</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-sub">

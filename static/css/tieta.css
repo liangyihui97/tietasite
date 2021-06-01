@@ -95,3 +95,7 @@ font-size: 1rem;
 line-height: 2;
 font-weight:bold
 }
+html,body,#container{
+            height:100%;
+            width:100%;
+        }
