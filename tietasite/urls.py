@@ -20,6 +20,6 @@ from tietaapp import views #某个具体的app，需要将本地路由于全局�
 
 
 urlpatterns = [
-    url('tietaapp/', include('tietaapp.urls')),#引用tietaapp的本地路由，tietaapp即为app的名字，这样可以方便即插即用，也可以通过url进行识别当前处于什么系统
     url('admin/', admin.site.urls),
+    url('', include('tietaapp.urls')),#引用tietaapp的本地路由，tietaapp即为app的名字，这样可以方便即插即用，也可以通过url进行识别当前处于什么系统
 ]

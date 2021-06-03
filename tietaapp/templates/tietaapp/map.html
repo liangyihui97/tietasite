@@ -1,7 +1,7 @@
 <!-- extends表明此页面继承自 base.html 文件 -->
 {% extends "base.html" %} {% load staticfiles %}
 <!-- 写入 base.html 中定义的 title -->
-{% block title %} 站址地图 {% endblock title %}
+{% block title %} 地图查点 {% endblock title %}
 <!-- 写入 base.html 中定义的 content -->
 {% block content %} 
 {% if request.user.is_authenticated %}
@@ -20,48 +20,44 @@
     <input id="regeo" type="button" class="btn" value="经纬度 -> 地址" >
 </div>
 <!-- 引入高德地图JS API 的入口脚本标签 -->
-<script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>  
-<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=66846c795bd27ae8b59a7e18297b90c5&plugin=AMap.Geocoder"></script>
+
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=66846c795bd27ae8b59a7e18297b90c5"></script>
 
 <script type="text/javascript">
-  var map = new AMap.Map("container", {
-        resizeEnable: true
+
+      var map = new AMap.Map('container', {
+        zoom: 15,
+        center: [113.270214,23.166544]
     });
-    
-    var geocoder = new AMap.Geocoder({
-        city: "010", //城市设为北京，默认：“全国”
-        radius: 1000 //范围，默认：500
-    });
-    var marker = new AMap.Marker();;
-    function regeoCode() {
-        
-        var lnglat  = document.getElementById('lnglat').value.split(',');
-        map.add(marker);
-        marker.setPosition(lnglat);
-        
-        geocoder.getAddress(lnglat, function(status, result) {
-            if (status === 'complete'&&result.regeocode) {
-                var address = result.regeocode.formattedAddress;
-                document.getElementById('address').value = address;
-            }else{
-                log.error('根据经纬度查询地址失败')
-            }
-        });
+
+     var styleObject = {
+        url: 'https://webapi.amap.com/theme/v1.3/markers/b/mark_bs.png',
+        size: new AMap.Size(11, 11),
+        anchor: new AMap.Pixel(6, 6)
     }
-    
-    map.on('click',function(e){
-        document.getElementById('lnglat').value = e.lnglat;
-        regeoCode();
-    })
-    document.getElementById("regeo").onclick = regeoCode;
-    document.getElementById('lnglat').onkeydown = function(e) {
-        if (e.keyCode === 13) {
-            regeoCode();
-            return false;
-        }
-        return true;
-    };
+
+var data = [{
+    lnglat: [113.270214,23.166544], //点标记位置
+    name: 'guangzhou',
+    id:1
+},
+{
+    lnglat: [113.243058,23.16896], //点标记位置
+    name: 'qiaodehuayuan',
+    id:2
+}
+];
+var massMarks = new AMap.MassMarks(data,{
+    zIndex: 111,  // 海量点图层叠加的顺序
+        opacity: 0.8,
+    cursor: 'pointer',
+    style: styleObject  // 设置样式对象
+});
+
+
+massMarks.setMap(map);
+
 </script>
-    
+
     <link rel="stylesheet" href="{% static 'css/map.css' %}">
 {% else %} 请先登录 {% endif %} {% endblock content %}

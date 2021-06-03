@@ -38,6 +38,7 @@ class User(AbstractUser):
     image = models.ImageField(verbose_name="头像", upload_to="users/%Y/%m", max_length=200, blank=True, null=True)
 
     class Meta:
+        managed = True
         verbose_name = "用户"
         verbose_name_plural = verbose_name
 
@@ -95,7 +96,7 @@ class StationCodeInfo(models.Model):
 
 # 租金
 class zujin(models.Model):
-    z = models.ForeignKey('StationCodeInfo', on_delete=models.CASCADE, to_field="requiredConfirmCode")
+    z = models.ForeignKey('StationCodeInfo', on_delete=models.CASCADE)
     stationCode = models.CharField(max_length=100, blank=True, null=True)
     requiredConfirmCode = models.CharField(max_length=100, blank=True, null=True)
     stationName = models.CharField(max_length=100, blank=True, null=True)
