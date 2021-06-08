@@ -1,0 +1,249 @@
+*** Starting uWSGI 2.0.19.1 (64bit) on [Mon Jun  7 12:35:24 2021] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 06 June 2021 04:36:38
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: ecs-a3ed
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /data/wwwroot/tietasite/uwsgi_conf
+writing pidfile to /data/wwwroot/tietasite/uwsgi_conf/uwsgi.pid
+detected binary path: /root/.virtualenvs/myserver/bin/uwsgi
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /data/wwwroot/tietasite
+your processes number limit is 3893
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+building mime-types dictionary from file /etc/mime.types...1060 entry found
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 0.0.0.0:80 fd 3
+uwsgi socket 0 bound to TCP address 127.0.0.1:9001 fd 6
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.7.2 (default, Jun  6 2021, 12:15:28)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+Python main interpreter initialized at 0x2977d50
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486672 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x2977d50 pid: 15292 (default app)
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 15292)
+spawned uWSGI worker 1 (pid: 15293, cores: 1)
+spawned uWSGI worker 2 (pid: 15294, cores: 1)
+spawned uWSGI worker 3 (pid: 15295, cores: 1)
+spawned uWSGI worker 4 (pid: 15296, cores: 1)
+spawned uWSGI worker 5 (pid: 15297, cores: 1)
+probably another instance of uWSGI is running on the same address (127.0.0.1:9001).
+bind(): Address already in use [core/socket.c line 769]
+...brutally killing workers...
+VACUUM: pidfile removed.
+Mon Jun  7 12:35:24 2021 - uWSGI worker 2 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Mon Jun  7 12:35:24 2021 - uWSGI worker 3 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Mon Jun  7 12:35:24 2021 - uWSGI worker 4 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Mon Jun  7 12:35:24 2021 - uWSGI worker 5 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Mon Jun  7 12:35:25 2021 - uWSGI worker 1 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+*** Starting uWSGI 2.0.19.1 (64bit) on [Mon Jun  7 12:38:27 2021] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 06 June 2021 04:36:38
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: ecs-a3ed
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /data/wwwroot/tietasite/uwsgi_conf
+writing pidfile to /data/wwwroot/tietasite/uwsgi_conf/uwsgi.pid
+detected binary path: /root/.virtualenvs/myserver/bin/uwsgi
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /data/wwwroot/tietasite
+your processes number limit is 3893
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+building mime-types dictionary from file /etc/mime.types...1060 entry found
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 0.0.0.0:80 fd 3
+uwsgi socket 0 bound to TCP address 127.0.0.1:9001 fd 6
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.7.2 (default, Jun  6 2021, 12:15:28)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+Python main interpreter initialized at 0x1dd5d50
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486672 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1dd5d50 pid: 15456 (default app)
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 15456)
+spawned uWSGI worker 1 (pid: 15457, cores: 1)
+spawned uWSGI worker 2 (pid: 15458, cores: 1)
+spawned uWSGI worker 3 (pid: 15459, cores: 1)
+spawned uWSGI worker 4 (pid: 15460, cores: 1)
+spawned uWSGI worker 5 (pid: 15461, cores: 1)
+probably another instance of uWSGI is running on the same address (127.0.0.1:9001).
+bind(): Address already in use [core/socket.c line 769]
+...brutally killing workers...
+VACUUM: pidfile removed.
+Mon Jun  7 12:38:27 2021 - uWSGI worker 2 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Mon Jun  7 12:38:27 2021 - uWSGI worker 3 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Mon Jun  7 12:38:27 2021 - uWSGI worker 4 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Mon Jun  7 12:38:27 2021 - uWSGI worker 1 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Mon Jun  7 12:38:27 2021 - uWSGI worker 5 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+*** Starting uWSGI 2.0.19.1 (64bit) on [Mon Jun  7 12:42:24 2021] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 06 June 2021 04:36:38
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: ecs-a3ed
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /data/wwwroot/tietasite/uwsgi_conf
+writing pidfile to /data/wwwroot/tietasite//uwsgi_conf/uwsgi.pid
+detected binary path: /root/.virtualenvs/myserver/bin/uwsgi
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /data/wwwroot/tietasite/
+your processes number limit is 3893
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+building mime-types dictionary from file /etc/mime.types...1060 entry found
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 0.0.0.0:80 fd 3
+uwsgi socket 0 bound to TCP address 127.0.0.1:9001 fd 6
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.7.2 (default, Jun  6 2021, 12:15:28)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+Python main interpreter initialized at 0x23fcd50
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 486672 bytes (475 KB) for 5 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x23fcd50 pid: 15728 (default app)
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 15728)
+spawned uWSGI worker 1 (pid: 15729, cores: 1)
+spawned uWSGI worker 2 (pid: 15730, cores: 1)
+spawned uWSGI worker 3 (pid: 15731, cores: 1)
+spawned uWSGI worker 4 (pid: 15732, cores: 1)
+spawned uWSGI worker 5 (pid: 15733, cores: 1)
+probably another instance of uWSGI is running on the same address (127.0.0.1:9001).
+bind(): Address already in use [core/socket.c line 769]
+...brutally killing workers...
+VACUUM: pidfile removed.
+Mon Jun  7 12:42:25 2021 - uWSGI worker 2 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Mon Jun  7 12:42:25 2021 - uWSGI worker 3 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Mon Jun  7 12:42:25 2021 - uWSGI worker 4 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Mon Jun  7 12:42:25 2021 - uWSGI worker 5 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Mon Jun  7 12:42:25 2021 - uWSGI worker 1 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+*** Starting uWSGI 2.0.19.1 (64bit) on [Mon Jun  7 12:45:27 2021] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 06 June 2021 04:36:38
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: ecs-a3ed
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /data/wwwroot/tietasite/uwsgi_conf
+writing pidfile to /data/wwwroot/tietasite//uwsgi_conf/uwsgi.pid
+detected binary path: /root/.virtualenvs/myserver/bin/uwsgi
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /data/wwwroot/tietasite/
+your processes number limit is 3893
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+building mime-types dictionary from file /etc/mime.types...1060 entry found
+lock engine: pthread robust mutexes
+thunder lock: enabled
+uWSGI http bound on 0.0.0.0:9001 fd 3
+probably another instance of uWSGI is running on the same address (127.0.0.1:9001).
+bind(): Address already in use [core/socket.c line 769]
+*** Starting uWSGI 2.0.19.1 (64bit) on [Mon Jun  7 21:28:29 2021] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 06 June 2021 04:36:38
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: lyh
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /data/wwwroot/tietasite/uwsgi_conf
+writing pidfile to /data/wwwroot/tietasite//uwsgi_conf/uwsgi.pid
+detected binary path: /root/.virtualenvs/myserver/bin/uwsgi
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /data/wwwroot/tietasite/
+your processes number limit is 3893
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+building mime-types dictionary from file /etc/mime.types...1060 entry found
+lock engine: pthread robust mutexes
+thunder lock: enabled
+probably another instance of uWSGI is running on the same address (0.0.0.0:80).
+bind(): Address already in use [core/socket.c line 769]
+*** Starting uWSGI 2.0.19.1 (64bit) on [Mon Jun  7 22:30:33 2021] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 06 June 2021 04:36:38
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: lyh
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /data/wwwroot/tietasite/uwsgi_conf
+writing pidfile to /data/wwwroot/tietasite//uwsgi_conf/uwsgi.pid
+detected binary path: /root/.virtualenvs/myserver/bin/uwsgi
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /data/wwwroot/tietasite/
+your processes number limit is 3893
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+building mime-types dictionary from file /etc/mime.types...1060 entry found
+lock engine: pthread robust mutexes
+thunder lock: enabled
+probably another instance of uWSGI is running on the same address (0.0.0.0:80).
+bind(): Address already in use [core/socket.c line 769]
+*** Starting uWSGI 2.0.19.1 (64bit) on [Tue Jun  8 09:43:50 2021] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-44) on 06 June 2021 04:36:38
+os: Linux-3.10.0-327.el7.x86_64 #1 SMP Thu Nov 19 22:10:57 UTC 2015
+nodename: lyh
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /data/wwwroot/tietasite/uwsgi_conf
+writing pidfile to /data/wwwroot/tietasite//uwsgi_conf/uwsgi.pid
+detected binary path: /root/.virtualenvs/myserver/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /data/wwwroot/tietasite/
+your processes number limit is 3893
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:8000 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.7.2 (default, Jun  6 2021, 12:15:28)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+PEP 405 virtualenv detected: /root/.virtualenvs/myserver
+Set PythonHome to /root/.virtualenvs/myserver
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xf293d0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 403077 bytes (393 KB) for 2 cores
+*** Operational MODE: preforking ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xf293d0 pid: 9972 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+spawned uWSGI master process (pid: 9972)
+spawned uWSGI worker 1 (pid: 9973, cores: 1)
+spawned uWSGI worker 2 (pid: 9974, cores: 1)
+Tue Jun  8 09:45:27 2021 - uWSGI worker 1 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Tue Jun  8 09:45:27 2021 - uWSGI worker 2 screams: UAAAAAAH my master disconnected: i will kill myself !!!

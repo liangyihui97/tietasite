@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'v60+!i6ho%r-yq*s6y5a0$6ipz)xf*948!1o5^hwkdoi%rz19+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -123,8 +123,9 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR,'static'),
-    )
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR,'static'),
+#    )
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 AUTH_USER_MODEL = "tietaapp.User"
